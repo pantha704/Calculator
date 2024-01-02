@@ -1,5 +1,6 @@
 body {
-  background-color: #1a1a1a; /* Dark background color */
+  background-color: #1a1a1a;
+  /* Dark background color */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,13 +9,17 @@ body {
 }
 
 .calculator {
-  border: 2px solid #00ffcc; /* Neon border color */
+  border: 2px solid #00ffcc;
+  /* Neon border color */
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); /* Neon box shadow */
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  /* Neon box shadow */
+  transition: box-shadow 0.3s ease;
+  /* Add a smooth transition effect */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 20px;
   max-width: 400px;
   width: 100%;
 }
@@ -33,7 +38,8 @@ input {
 button {
   padding: 10px;
   font-size: 18px;
-  border: 2px solid #00ffcc; /* Neon border color */
+  border: 2px solid #00ffcc;
+  /* Neon border color */
   border-radius: 5px;
   cursor: pointer;
   background-color: #333;
@@ -41,16 +47,20 @@ button {
 }
 
 button.operator {
-  background-color: #ff9900; /* Orange for operators */
+  background-color: #ff9900;
+  /* Orange for operators */
 }
 
 button.equals {
-  background-color: #4caf50; /* Green for equals */
+  background-color: #4caf50;
+  /* Green for equals */
 }
 
 button.clear {
-  background-color: #ff3333; /* Red for clear */
+  background-color: #ff3333;
+  /* Red for clear */
 }
+
 .button:hover {
   filter: brightness(1.22);
 }

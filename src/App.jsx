@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "./assets/Button";
 import "./App.css";
+import * as math from "mathjs";
 
 function App() {
   const [placeholder, setPH] = useState("Calculate Something?");
@@ -15,8 +16,18 @@ function App() {
     else if (key === "Backspace") handleBackspace();
   };
 
+  useEffect(() => {
+    document.body.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.body.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
   const handleButtonClick = (value) => {
     setDisplay((prevDisplay) => {
+      if (value === "." && prevDisplay.includes(".")) {
+        return prevDisplay;
+      }
       if (/[-+*/]/.test(prevDisplay.slice(-1)) && /[-+*/]/.test(value)) {
         return prevDisplay.slice(0, -1) + value;
       }
@@ -31,7 +42,7 @@ function App() {
 
   const handleEquals = () => {
     try {
-      const result = eval(display);
+      const result = math.evaluate(display);
       setDisplay(result.toString());
     } catch (error) {
       setDisplay("");
@@ -56,12 +67,13 @@ function App() {
     "9",
     "*",
     "0",
-    "C",
-    "=",
+    "←",
+    ".",
     "/",
     "(",
     ")",
-    "←",
+    "C",
+    "=",
   ];
 
   return (
@@ -71,7 +83,6 @@ function App() {
         id="display"
         placeholder={placeholder}
         value={display}
-        readOnly
         style={display ? { textAlign: "right" } : { textAlign: "left" }}
       />
       {buttons.map((button) => {
@@ -89,14 +100,7 @@ function App() {
           func = handleClear;
         }
 
-        return (
-          <Button
-            str={button}
-            Kfn={handleKeyPress}
-            fn={func}
-            classN={className}
-          />
-        );
+        return <Button str={button} fn={func} classN={className} />;
       })}
     </div>
   );
