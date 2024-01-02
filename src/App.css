@@ -24,6 +24,11 @@ body {
   width: 100%;
 }
 
+.calculator:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
+  /* Darker shade on hover */
+}
+
 input {
   grid-column: span 4;
   margin-bottom: 10px;
